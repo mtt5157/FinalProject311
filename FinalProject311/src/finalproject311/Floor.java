@@ -1,12 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package views;
+package finalproject311;
 
-import controllers.FloorController;
-import entities.Room;
+
+
+
+
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -19,17 +16,13 @@ import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
-import models.CharacterMovement;
-import models.Customer;
-import models.RoomEntry;
-import models.AbpEntry;
-import models.MeetingRoomMovement;
+
 
 /**
  *
  * @author matthewtucker
  */
-public class Floor1 extends JPanel implements ActionListener, KeyListener{
+public class Floor extends JPanel implements ActionListener, KeyListener{
 
     private String floorName;
     private Image floorImage;
@@ -38,14 +31,9 @@ public class Floor1 extends JPanel implements ActionListener, KeyListener{
     private ArrayList<JPanel> rooms;
     private ArrayList<RoomEntry> entries;
     private player player1;
-    private AbpEntry entry1;
-    private AuBonPainPanel abp1;
-    private Customer cust1;
-    private CharacterMovement charMove1;
-    private MeetingRoomPanel mrPanel;
-    private MeetingRoomMovement mrMovement;
-    private Room206 room206;
-    public Floor1(String floorName, FloorController cont1) {
+   
+ 
+    public Floor(String floorName, FloorController cont1) {
         this.floorName = floorName;
         this.controller = cont1;
         refreshTimer = new Timer(50, this);
@@ -53,20 +41,13 @@ public class Floor1 extends JPanel implements ActionListener, KeyListener{
         rooms = new ArrayList<>();
         entries = new ArrayList<>();
         
-        cust1 = new Customer(new Dimension(800, 600));
-        charMove1 = new CharacterMovement();
-        mrMovement = new MeetingRoomMovement(cust1);
-        abp1 = new AuBonPainPanel(cust1, charMove1);
-        mrPanel = new MeetingRoomPanel(cust1,mrMovement);
-        room206 = new Room206(cust1,charMove1);
        
-        entry1 = new AbpEntry(1, 450, 50, abp1);
         
         rooms.add(new Room(202));
         rooms.add(new Room(204));
-        rooms.add(room206);
+   
         rooms.add(new Room(208));
-        rooms.add(mrPanel);
+   
         
         entries.add(new RoomEntry(202, 50, 100, rooms.get(0)));
         entries.add(new RoomEntry(204, 50, 150, rooms.get(1)));
@@ -93,7 +74,7 @@ public class Floor1 extends JPanel implements ActionListener, KeyListener{
             entries.get(i).paintComponent(g);
         }
 
-        entry1.paintComponent(g);
+       
 
         for (int i = 0; i < entries.size(); i++) {
             entries.get(i).paintComponent(g);
@@ -105,9 +86,7 @@ public class Floor1 extends JPanel implements ActionListener, KeyListener{
                  System.out.println("Collision");
             }
         }
-        if (player1.intersects(entry1)) {
-           controller.floorToAbp(entry1.getAbpPanel());
-        }
+        
     }
 
     public void actionPerformed(ActionEvent e) {

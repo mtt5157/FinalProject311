@@ -1,19 +1,24 @@
-package controllers;
+package finalproject311;
+
+
 
 import java.util.ArrayList;
-import entities.*;
+
+import javax.swing.JFrame;
 import javax.swing.JPanel;
-import views.*;
+
+
 
 public class FloorController {
-    private TestFrame frame1;
-    private Floor1 floor1;
+    private GameFrame frame1;
+    private Floor floor1;
     private JPanel room1;
    
     
     public FloorController(){
-        frame1 = new TestFrame();
-        floor1 = new Floor1("Floor", this);
+        floor1 = new Floor("Floor1", this);
+        frame1 = new GameFrame("SimIST");
+ 
         frame1.add(floor1);
         floor1.revalidate();
         floor1.repaint();
@@ -49,16 +54,9 @@ public class FloorController {
         frame1.repaint();
     }
     
-    public void floorToAbp(AuBonPainPanel panel1){
-        frame1.remove(floor1);
-        frame1.add(panel1);
-        //room1.setFocusable(true);
-        //room1.requestFocusInWindow();
-        frame1.revalidate();
-        frame1.repaint();
-    }
+   
     
-    public void roomToFloor(Floor1 floor)
+    public void roomToFloor(Floor floor)
     {
         frame1.remove(room1);
         frame1.add(floor);

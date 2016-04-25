@@ -15,7 +15,7 @@ public class FinalProject311 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+      FloorController cont1 = new FloorController();
     }
     
 }
