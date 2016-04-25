@@ -5,23 +5,37 @@
  */
 package finalproject311;
 
+import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Rectangle;
+import java.awt.event.KeyEvent;
 
 /**
  *
- * @author matthewtucker
+ * @author Zack Lehmann
  */
 public class player extends Rectangle {
        
 
-        private int dx;
-        private int dy;
+       private int dx;
+       private int dy;
+       private final Dimension size;
+       private Image playerImage;
+       private final int playerSize;
+       private final int playerSpeed;
+       private Floor1 panel1;
 
-        public player() {
+        public player(int panelWidth, int panelHeight) {
             this.dx = 0;
             this.dy = 0;
-            this.setBounds(200, 50, 30, 30);
+            //playerImage = new ImageIcon().getImage();
+            this.size = new Dimension(panelWidth, panelHeight);
+            this.playerSize = 50;
+            this.playerSpeed = 10;
+            
+            this.setBounds(200, 50, playerSize, playerSize);
+            
         }
 
         public void move() {
@@ -29,6 +43,20 @@ public class player extends Rectangle {
             this.y += dy;
         }
 
+        public void keyPressed(KeyEvent e){
+        if(e.getKeyCode() == KeyEvent.VK_LEFT)
+        {
+            this.dx = -20;
+        }
+        else if(e.getKeyCode() == KeyEvent.VK_RIGHT)
+        {
+            this.dx = 20;
+        }
+        }
+         public void keyReleased(KeyEvent e){
+             
+        this.dx = 0;
+        }
         public void setDx(int dx) {
             this.dx = dx;
         }
