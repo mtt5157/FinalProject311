@@ -144,3 +144,161 @@ public class Floor1 extends JPanel implements ActionListener, KeyListener{
 
 }
 
+/*
+######Graham's super cool hallway code ######
+
+public Hallway(){
+       super();
+       this.addKeyListener(this);
+       this.player1 = new Player1(500, 500);
+       this.theFrame = new GameFrame1(this);
+       this.setFocusable(true);
+       this.dividers = new ArrayList<Divider>();
+       this.tables = new ArrayList<Table>();
+       this.trashcans = new ArrayList<>();
+       populateObjects();
+       this.timer1 = new Timer(50, this);
+       this.timer1.start();
+       
+    }
+    
+    #tables and dividers can be just remade as rectabgles
+    private void  populateObjects(){
+        Table table1 = new Table(50, 100, 400, 50, "Table 1");
+        Table table2 = new Table(50, 100, 400, 200, "Table 2");
+        Table table3 = new Table(50, 100, 400, 350, "Table 3");
+        Divider divider1 = new Divider(150, 10, 350, 25, "Divider 1");
+        Divider divider2 = new Divider(150, 10, 350, 170, "Divider 2");
+        Divider divider3 = new Divider(150, 10, 350, 315, "Divider 3");
+        Trashcan trashcan1 = new Trashcan(30, 125, 0, 175, "Trashcan");
+        
+        trashcans.add(trashcan1);
+        
+        dividers.add(divider1);
+        dividers.add(divider2);
+        dividers.add(divider3);
+        
+        tables.add(table1);
+        tables.add(table2);
+        tables.add(table3);
+        
+    }
+    
+    @Override
+    public void paintComponent(Graphics g){
+       super.paintComponent(g);
+       g.clearRect(0, 0, this.getWidth(), this.getHeight());
+       player1.paintComponenet(g);
+       paintObjects(g);
+          
+        
+    }
+    
+     public void paintObjects(Graphics g){
+      for(int i = 0; i<tables.size(); i++)
+       {
+           tables.get(i).paintComponent(g);
+       }
+      for(int i = 0; i<dividers.size(); i++)
+       {
+           dividers.get(i).paintComponent(g);
+       }
+      for(int i = 0; i<trashcans.size(); i++)
+       {
+           trashcans.get(i).paintComponent(g);
+       }
+    }
+     
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        Object o = e.getSource();
+        
+        if(o== timer1){
+            this.repaint();
+
+        }
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        player1.keyPressed(e);
+        System.out.println("Hi");
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        player1.keyReleased(e);
+    }
+
+    
+    public ArrayList<Table> getTables() {
+        return tables;
+    }
+
+    
+    public void setTables(ArrayList<Table> tables) {
+        this.tables = tables;
+    }
+
+    
+    public ArrayList<Divider> getDividers() {
+        return dividers;
+    }
+
+    
+    public void setDividers(ArrayList<Divider> dividers) {
+        this.dividers = dividers;
+    }
+
+    
+    public ArrayList<Trashcan> getTrashcans() {
+        return trashcans;
+    }
+
+    
+    public void setTrashcans(ArrayList<Trashcan> trashcans) {
+        this.trashcans = trashcans;
+    }
+
+    
+    public Player1 getPlayer1() {
+        return player1;
+    }
+
+    
+    public void setPlayer1(Player1 player1) {
+        this.player1 = player1;
+    }
+
+    
+    public GameFrame1 getTheFrame() {
+        return theFrame;
+    }
+
+    
+    public void setTheFrame(GameFrame1 theFrame) {
+        this.theFrame = theFrame;
+    }
+
+    
+    public Timer getTimer1() {
+        return timer1;
+    }
+
+    
+    public void setTimer1(Timer timer1) {
+        this.timer1 = timer1;
+    }
+    
+    
+    
+    
+    
+}
+*/
+
