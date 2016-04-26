@@ -10,6 +10,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -20,16 +21,17 @@ public class player extends Rectangle {
 
        private int dx;
        private int dy;
+       private PlayerMovement pm;
        private final Dimension size;
        private Image playerImage;
        private final int playerSize;
        private final int playerSpeed;
-       private Floor1 panel1;
+       private Floor panel1;
 
         public player(int panelWidth, int panelHeight) {
             this.dx = 0;
             this.dy = 0;
-            //playerImage = new ImageIcon().getImage();
+            playerImage = new ImageIcon("src/Images/sprite.png").getImage();
             this.size = new Dimension(panelWidth, panelHeight);
             this.playerSize = 50;
             this.playerSpeed = 10;
@@ -49,6 +51,14 @@ public class player extends Rectangle {
             this.dx = -20;
         }
         else if(e.getKeyCode() == KeyEvent.VK_RIGHT)
+        {
+            this.dx = 20;
+        }
+        else if(e.getKeyCode() == KeyEvent.VK_UP)
+        {
+            this.dx = -20;
+        }
+        else if(e.getKeyCode() == KeyEvent.VK_DOWN)
         {
             this.dx = 20;
         }
