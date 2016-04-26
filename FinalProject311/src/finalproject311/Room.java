@@ -23,39 +23,45 @@ import javax.swing.Timer;
 public class Room extends JPanel implements ActionListener, KeyListener{
     
     
-    public static final int PodeumWidth = 60;
-    public static final int PodeumHeight = 15;
-    public static final int LongtableWidth = 175;
+    public static final int PodeumWidth = 35;
+    public static final int PodeumHeight = 35;
+    public static final int LongtableWidth = 200;
     public static final int MiddletableWidth = 90;
     public static final int ShorttableWidth = 18;
-    public static final int TableHeight = 15;
-    public static final int FrontTableWidth = 30;
-    public static final int FrontTableHeight = 64;
-    public static final int WallUDWidth = 450;
-    public static final int WallUDHeight = 45;
+    public static final int TableHeight = 50;
+    public static final int FrontTableWidth = 120;
+    public static final int FrontTableHeight = 50;
+    public static final int WallUDWidth = 500;
+    public static final int WallUDHeight = 15;
     public static final int WallLRWidth= 15;
-    public static final int WallLRHeight = 600;
-
-    private Rectangle podeum;
-    private Rectangle frontTable;
-    private Rectangle leftDesk1;
-    private Rectangle leftDesk2;
-    private Rectangle leftDesk3;
-    private Rectangle leftDesk4;
-    private Rectangle rightDesk1;
-    private Rectangle rightDesk2;
-    private Rectangle rightDesk3;
-    private Rectangle rightDesk4;
-    private Rectangle printer;
-    private Rectangle trashcan;
-    private Rectangle key;
-    private Rectangle wallUD1;
-    private Rectangle wallUD2;
-    private Rectangle wallLR1;
-    private Rectangle wallLR2;
+    public static final int WallLRHeight = 485;
+    public static final int TrashcanHeight = 30;
+    public static final int TrashcanWidth = 30;
+    public static final int PrinterHeight = 30;
+    public static final int PrinterWidth = 30;
+    
+    
+    
+    private RoomObject podeum;
+    private RoomObject frontTable;
+    private RoomObject leftDesk1;
+    private RoomObject leftDesk2;
+    private RoomObject leftDesk3;
+    private RoomObject leftDesk4;
+    private RoomObject rightDesk1;
+    private RoomObject rightDesk2;
+    private RoomObject rightDesk3;
+    private RoomObject rightDesk4;
+    private RoomObject printer;
+    private RoomObject trashcan;
+    private RoomObject key;
+    private RoomObject wallUD1;
+    private RoomObject wallUD2;
+    private RoomObject wallLR1;
+    private RoomObject wallLR2;
        
     private int roomNumber;
-    private ArrayList<Rectangle>  roomObjects;
+    private ArrayList<RoomObject>  roomObjects;
     private ArrayList<Object> computers;
     private Image roomImage;
     private player player1;
@@ -64,61 +70,58 @@ public class Room extends JPanel implements ActionListener, KeyListener{
     
     public Room(int theRoomNumber){
        super();
-       this.addKeyListener(this);
-       this.player1 = new player();
-       this.setFocusable(true);
+       
        this.roomNumber =  theRoomNumber;
-       this.roomObjects = new ArrayList<Rectangle>();
+       this.roomObjects = new ArrayList<>();
        this.timer1 = new Timer(50, this);
        this.timer1.start();
-       this.computers = new ArrayList<Object>();
+       this.computers = new ArrayList<>();
+       init();
+       addObjectsToArayList();
+       this.player1 = new player(500, 500);
+       
+       this.addKeyListener(this);
+       this.setFocusable(true);
        
     }
-
-    private void placeStations() {
-        player1.setBounds(450, 150, 50, 50);
-        podeum.setBounds(43, 100, PodeumWidth, PodeumHeight);
-        frontTable.setBounds(363,100,PodeumWidth, PodeumHeight);
-        leftDesk1.setBounds(0, 80, LongtableWidth, TableHeight);
-        leftDesk2.setBounds(0,105,LongtableWidth, TableHeight);
-        leftDesk3.setBounds(266,256,LongtableWidth, TableHeight);
-        leftDesk4.setBounds(94,356,LongtableWidth, TableHeight);
-        rightDesk1.setBounds(266,356,LongtableWidth, TableHeight);
-        rightDesk2.setBounds(94,456,LongtableWidth, TableHeight);
-        rightDesk3.setBounds(266,456,LongtableWidth, TableHeight);
-        rightDesk4.setBounds(436, 449, LongtableWidth, TableHeight);
-        printer.setBounds(444, 353, FrontTableWidth, FrontTableHeight);
-        trashcan.setBounds(413, 449, FrontTableWidth, FrontTableHeight);
-        key.setBounds(29, 353, FrontTableWidth, FrontTableHeight);
-        wallUD1.setBounds(23,30, WallUDWidth, WallUDHeight);
-        wallUD2.setBounds(23, 544, WallUDWidth, WallUDHeight);
-        wallLR1.setBounds(0,66, WallLRWidth, WallLRHeight);
-        wallLR2.setBounds(458,226, WallLRWidth, WallLRHeight);
-   
-    }
     
-    private void init() {
-        podeum = new Rectangle();
-        frontTable = new Rectangle();
-        leftDesk1 = new Rectangle();
-        leftDesk2 = new Rectangle();
-        leftDesk3 = new Rectangle();
-        leftDesk4 = new Rectangle();
-        rightDesk1 = new Rectangle();
-        rightDesk2 = new Rectangle();
-        rightDesk3 = new Rectangle();
-        rightDesk4 = new Rectangle();
-        printer = new Rectangle();
-        trashcan = new Rectangle();
-        key = new Rectangle();
-        wallUD1 = new Rectangle();
-        wallUD2 = new Rectangle();
-        wallLR1 = new Rectangle();
-        wallLR2 = new Rectangle();
+    private void addObjectsToArayList(){
+        this.roomObjects.add(podeum);
+        this.roomObjects.add(frontTable);
+        this.roomObjects.add(leftDesk1);
+        this.roomObjects.add(leftDesk2);
+        this.roomObjects.add(leftDesk3);
+        this.roomObjects.add(leftDesk4);
+        this.roomObjects.add(rightDesk1);
+        this.roomObjects.add(rightDesk2);
+        this.roomObjects.add(rightDesk3);
+        this.roomObjects.add(rightDesk4);
+        this.roomObjects.add(printer);
+        this.roomObjects.add(trashcan);
+        this.roomObjects.add(wallUD1);
+        this.roomObjects.add(wallUD2);
+        this.roomObjects.add(wallLR1);
+        this.roomObjects.add(wallLR2);
+    }
 
-   
-        
-        
+    private void init() {
+        podeum = new RoomObject(100, 20, PodeumWidth, PodeumHeight, this);
+        frontTable = new RoomObject(0, 0,FrontTableWidth, FrontTableHeight, this);
+        leftDesk1 = new RoomObject(0, 155, TableHeight, LongtableWidth,this);
+        leftDesk2 = new RoomObject(0, 240,TableHeight, LongtableWidth, this);
+        leftDesk3 = new RoomObject(0, 325,TableHeight, LongtableWidth, this);
+        leftDesk4 = new RoomObject(0, 410,TableHeight, LongtableWidth, this);
+        rightDesk1 = new RoomObject(285, 155,TableHeight, LongtableWidth, this);
+        rightDesk2 = new RoomObject(285, 240,TableHeight, LongtableWidth, this);
+        rightDesk3 = new RoomObject(285, 325,TableHeight, LongtableWidth, this);
+        rightDesk4 = new RoomObject(285, 410, TableHeight, LongtableWidth, this);
+        printer = new RoomObject(455, 25, PrinterWidth, PrinterHeight, this);
+        trashcan = new RoomObject(455, 60, TrashcanWidth, TrashcanHeight, this);
+        key = new RoomObject(250, 250, FrontTableWidth, FrontTableHeight, this);
+        wallUD1 = new RoomObject(-15,0, WallUDWidth, WallUDHeight, this);
+        wallUD2 = new RoomObject(485,0, WallUDWidth, WallUDHeight, this);
+        wallLR1 = new RoomObject(0, -15, WallLRWidth, WallLRHeight, this);
+        wallLR2 = new RoomObject(0, 485, WallLRWidth, WallLRHeight, this);   
     }
     /**
      * @return the roomNumber
@@ -137,15 +140,13 @@ public class Room extends JPanel implements ActionListener, KeyListener{
     /**
      * @return the roomObjects
      */
-    public ArrayList<Rectangle> getRoomObjects() {
+    public ArrayList<RoomObject> getRoomObjects() {
         return roomObjects;
     }
 
-    /**
-     * @param roomObjects the roomObjects to set
-     */
-    public void setRoomObjects(ArrayList<Rectangle> desks) {
-        this.roomObjects = desks;
+    
+    public void setRoomObjects(ArrayList<RoomObject> objects) {
+        this.roomObjects = objects;
     }
 
     /**
@@ -166,44 +167,51 @@ public class Room extends JPanel implements ActionListener, KeyListener{
     public void paintComponent(Graphics g){
        super.paintComponent(g);
        g.clearRect(0, 0, this.getWidth(), this.getHeight());
-       player1.paintComponenet(g);
-       paintDesks(g);
+       
+       player1.paintComponent(g);
+       for (int i = 0; i<roomObjects.size(); i++)
+        {
+            roomObjects.get(i).paintComponent(g);
+        }
           
         
     }
     
-     public void paintDesks(Graphics g){
-      for(int i = 0; i<roomObjects.size(); i++)
-       {
-           roomObjects.get(i).paintComponent(g);
-       }
-    }
+    
      
     @Override
     public void actionPerformed(ActionEvent e) {
         Object o = e.getSource();
-        
-        if(o== timer1){
-            this.repaint();
 
+        if (o == timer1) {
+            this.repaint();
         }
     }
 
     @Override
     public void keyTyped(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-        player1.keyPressed(e);
-        System.out.println("Hi");
+        if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+            player1.setDx(-20);
+
+            System.out.println("Typed");
+        } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+            player1.setDx(20);
+        } else if (e.getKeyCode() == KeyEvent.VK_UP) {
+            player1.setDy(-20);
+        } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+            player1.setDy(20);
+        }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        player1.keyReleased(e);
+        player1.setDx(0);
+        player1.setDy(0);
     }
-    
     
 }
