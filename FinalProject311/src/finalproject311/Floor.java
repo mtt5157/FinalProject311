@@ -57,15 +57,11 @@ public class Floor extends JPanel implements ActionListener, KeyListener{
         
         rooms.add(new Room(202));
         rooms.add(new Room(204));
-//        rooms.add(new Room(206));
-//        rooms.add(new Room(208));
-//        rooms.add(new Room(210));
+
         
         entries.add(new RoomEntry(202, 0, 100, rooms.get(0)));
         entries.add(new RoomEntry(204, 0, 350, rooms.get(1)));
-//        entries.add(new RoomEntry(208, 50, 250, rooms.get(3)));
-//        entries.add(new RoomEntry(206, 50, 250, rooms.get(2)));
-//        entries.add(new RoomEntry(210, 50, 300, rooms.get(4)));
+
         
         player1 = new player(500,500);
         
@@ -84,8 +80,7 @@ public class Floor extends JPanel implements ActionListener, KeyListener{
 
         player1.paintComponent(g);
         paintObjects(g);
-       // currentX = player1.getCurrentX();
-       // currentY = player1.getCurrentY();
+     
         checkObjectCollision();
         for (int i = 0; i < entries.size() - 1; i++) {
             entries.get(i).paintComponent(g);
@@ -139,8 +134,7 @@ public class Floor extends JPanel implements ActionListener, KeyListener{
             if (player1.intersects(tables.get(i))){
                 player1.setX(tables.get(i).getCurrentX()-30);
                 player1.setY(tables.get(i).getCurrentY()+10);
-                //player1.setDx(0);
-                //player1.setDy(0);
+               
             }
         }
     }
@@ -172,26 +166,7 @@ public class Floor extends JPanel implements ActionListener, KeyListener{
         
     }
 
-    public void keyPressed(KeyEvent e) {
-        
-        //currentX = player1.getCurrentX();
-        //currentY = player1.getCurrentY();
-        
-//       for (int i = 0; i < dividers.size(); i++){
-//            if (player1.intersects(dividers.get(i))){
-//                collision = true;
-//            }
-//       }   
-//        for(int i =0; i<tables.size(); i++){
-//            if(player1.intersects(tables.get(i))){
-//              collision =true;
-//            }    
-            
-       //}
-//            if(collision ==true){
-//             player1.setX(currentX-1);
-//             player1.setY(currentY-1);
-//            }    
+    public void keyPressed(KeyEvent e) { 
             
            if (e.getKeyCode() == KeyEvent.VK_LEFT) {
             player1.setDx(-20);
