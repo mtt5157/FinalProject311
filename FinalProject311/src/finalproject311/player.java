@@ -45,28 +45,28 @@ public class player extends Rectangle {
             this.y += dy;
         }
 
-        public void keyPressed(KeyEvent e){
-        if(e.getKeyCode() == KeyEvent.VK_LEFT)
-        {
-            this.dx = -20;
-        }
-        else if(e.getKeyCode() == KeyEvent.VK_RIGHT)
-        {
-            this.dx = 20;
-        }
-        else if(e.getKeyCode() == KeyEvent.VK_UP)
-        {
-            this.dx = -20;
-        }
-        else if(e.getKeyCode() == KeyEvent.VK_DOWN)
-        {
-            this.dx = 20;
-        }
-        }
-         public void keyReleased(KeyEvent e){
-             
-        this.dx = 0;
-        }
+//        public void keyPressed(KeyEvent e){
+//        if(e.getKeyCode() == KeyEvent.VK_LEFT)
+//        {
+//            this.dx = -20;
+//        }
+//        else if(e.getKeyCode() == KeyEvent.VK_RIGHT)
+//        {
+//            this.dx = 20;
+//        }
+//        else if(e.getKeyCode() == KeyEvent.VK_UP)
+//        {
+//            this.dx = -20;
+//        }
+//        else if(e.getKeyCode() == KeyEvent.VK_DOWN)
+//        {
+//            this.dx = 20;
+//        }
+//        }
+//         public void keyReleased(KeyEvent e){
+//             
+//        this.dx = 0;
+//        }
         public void setDx(int dx) {
             this.dx = dx;
         }
@@ -79,5 +79,8 @@ public class player extends Rectangle {
             move();
             g.drawRect(x, y, 30, 30);
         }
+        
+    
+    
     
 }

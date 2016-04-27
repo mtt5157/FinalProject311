@@ -31,6 +31,13 @@ public class Floor extends JPanel implements ActionListener, KeyListener{
     private ArrayList<JPanel> rooms;
     private ArrayList<RoomEntry> entries;
     private player player1;
+    private ArrayList<Divider> dividers;
+    private ArrayList<Trashcan> trashcans;
+    private ArrayList<Table> tables;
+    private ArrayList<Rectangle> obstacles;
+    private int currentX;
+    private int currentY;
+    private boolean collision;
    
  
     public Floor(String floorName, FloorController cont1) {
@@ -40,7 +47,12 @@ public class Floor extends JPanel implements ActionListener, KeyListener{
         refreshTimer.start();
         rooms = new ArrayList<>();
         entries = new ArrayList<>();
-        
+        this.dividers = new ArrayList<Divider>();
+        this.tables = new ArrayList<Table>();
+        this.trashcans = new ArrayList<>();
+        this.obstacles = new ArrayList<>();
+        populateObjects();
+        collision =false;
        
         
         rooms.add(new Room(202));
@@ -66,10 +78,15 @@ public class Floor extends JPanel implements ActionListener, KeyListener{
     }
 
     public void paintComponent(Graphics g) {
+        
         super.paintComponent(g);
         g.clearRect(0, 0, this.getWidth(), this.getHeight());
 
         player1.paintComponent(g);
+        paintObjects(g);
+       // currentX = player1.getCurrentX();
+       // currentY = player1.getCurrentY();
+       // checkObjectCollision();
         for (int i = 0; i < entries.size() - 1; i++) {
             entries.get(i).paintComponent(g);
         }
@@ -88,60 +105,7 @@ public class Floor extends JPanel implements ActionListener, KeyListener{
         }
         
     }
-
-    public void actionPerformed(ActionEvent e) {
-        Object o = e.getSource();
-
-        if (o == refreshTimer) {
-            this.repaint();
-        }
-    }
-
-    public void keyTyped(KeyEvent e) {
-        
-    }
-
-    public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            player1.setDx(-20);
-
-            System.out.println("Typed");
-        } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            player1.setDx(20);
-        } else if (e.getKeyCode() == KeyEvent.VK_UP) {
-            player1.setDy(-20);
-        } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-            player1.setDy(20);
-        }
-    }
-
-    public void keyReleased(KeyEvent e) {
-        player1.setDx(0);
-        player1.setDy(0);
-    }
-
-
-}
-
-/*
-######Graham's super cool hallway code ######
-
-public Hallway(){
-       super();
-       this.addKeyListener(this);
-       this.player1 = new Player1(500, 500);
-       this.theFrame = new GameFrame1(this);
-       this.setFocusable(true);
-       this.dividers = new ArrayList<Divider>();
-       this.tables = new ArrayList<Table>();
-       this.trashcans = new ArrayList<>();
-       populateObjects();
-       this.timer1 = new Timer(50, this);
-       this.timer1.start();
-       
-    }
     
-    #tables and dividers can be just remade as rectabgles
     private void  populateObjects(){
         Table table1 = new Table(50, 100, 400, 50, "Table 1");
         Table table2 = new Table(50, 100, 400, 200, "Table 2");
@@ -163,14 +127,32 @@ public Hallway(){
         
     }
     
-    @Override
-    public void paintComponent(Graphics g){
-       super.paintComponent(g);
-       g.clearRect(0, 0, this.getWidth(), this.getHeight());
-       player1.paintComponenet(g);
-       paintObjects(g);
-          
-        
+//    private void checkObjectCollision(){
+//        for (int i = 0; i < dividers.size(); i++){
+//            if (player1.intersects(dividers.get(i))){
+//                player1.setDx(-2);
+//                player1.setDy(-2);
+//                //player1.setDx(0);
+//                //player1.setDy(0);
+//            }
+//        }
+//        
+//        for(int i = 0; i<tables.size(); i++){
+//            if (player1.intersects(tables.get(i))){
+//                player1.setDx(-2);
+//                player1.setDy(-2);
+//                //player1.setDx(0);
+//                //player1.setDy(0);
+//            }
+//        }
+//    }
+
+    public void actionPerformed(ActionEvent e) {
+        Object o = e.getSource();
+
+        if (o == refreshTimer) {
+            this.repaint();
+        }
     }
     
      public void paintObjects(Graphics g){
@@ -187,97 +169,65 @@ public Hallway(){
            trashcans.get(i).paintComponent(g);
        }
     }
-     
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        Object o = e.getSource();
-        
-        if(o== timer1){
-            this.repaint();
 
-        }
-    }
-
-    @Override
     public void keyTyped(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
-    @Override
     public void keyPressed(KeyEvent e) {
-        player1.keyPressed(e);
-        System.out.println("Hi");
-    }
+        
+        //currentX = player1.getCurrentX();
+        //currentY = player1.getCurrentY();
+        
+//       for (int i = 0; i < dividers.size(); i++){
+//            if (player1.intersects(dividers.get(i))){
+//                collision = true;
+//            }
+//       }   
+//        for(int i =0; i<tables.size(); i++){
+//            if(player1.intersects(tables.get(i))){
+//              collision =true;
+//            }    
+            
+       //}
+//            if(collision ==true){
+//             player1.setX(currentX-1);
+//             player1.setY(currentY-1);
+//            }    
+            
+           if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+            player1.setDx(-20);
+          
+            System.out.println("Typed");
+            }
+           
+            else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+            player1.setDx(20);
+      
+            } 
+            
+            else if (e.getKeyCode() == KeyEvent.VK_UP) {
+            player1.setDy(-20);
+       
+            } 
+            
+            else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+            player1.setDy(20);
+         
+        }
+     }
+        
+    
 
-    @Override
     public void keyReleased(KeyEvent e) {
-        player1.keyReleased(e);
+        player1.setDx(0);
+        player1.setDy(0);
     }
+    
+    
 
-    
-    public ArrayList<Table> getTables() {
-        return tables;
-    }
 
-    
-    public void setTables(ArrayList<Table> tables) {
-        this.tables = tables;
-    }
-
-    
-    public ArrayList<Divider> getDividers() {
-        return dividers;
-    }
-
-    
-    public void setDividers(ArrayList<Divider> dividers) {
-        this.dividers = dividers;
-    }
-
-    
-    public ArrayList<Trashcan> getTrashcans() {
-        return trashcans;
-    }
-
-    
-    public void setTrashcans(ArrayList<Trashcan> trashcans) {
-        this.trashcans = trashcans;
-    }
-
-    
-    public Player1 getPlayer1() {
-        return player1;
-    }
-
-    
-    public void setPlayer1(Player1 player1) {
-        this.player1 = player1;
-    }
-
-    
-    public GameFrame1 getTheFrame() {
-        return theFrame;
-    }
-
-    
-    public void setTheFrame(GameFrame1 theFrame) {
-        this.theFrame = theFrame;
-    }
-
-    
-    public Timer getTimer1() {
-        return timer1;
-    }
-
-    
-    public void setTimer1(Timer timer1) {
-        this.timer1 = timer1;
-    }
-    
-    
-    
-    
-    
 }
-*/
+
+
 
