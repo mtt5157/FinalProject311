@@ -19,7 +19,7 @@ import javax.swing.Timer;
 
 /**
  *
- * @author matthewtucker
+ * @author Graham
  */
 public class Room extends JPanel implements ActionListener, KeyListener{
     
@@ -68,7 +68,6 @@ public class Room extends JPanel implements ActionListener, KeyListener{
     private player player1;
     private Timer timer1;
     private Image carpet;
-    //private GameFrame theFrame;
     
     public Room(int theRoomNumber){
        super();
@@ -82,10 +81,8 @@ public class Room extends JPanel implements ActionListener, KeyListener{
        addObjectsToArayList();
        this.player1 = new player(500, 500);
        this.background = new Background("src/Images/carpet.png", Background.TILED, this);
-       
        this.addKeyListener(this);
-       this.setFocusable(true);
-       
+       this.setFocusable(true);    
     }
 
     private void addObjectsToArayList(){
@@ -170,29 +167,29 @@ public class Room extends JPanel implements ActionListener, KeyListener{
             if (player1.intersects(roomObjects.get(i))){
                Rectangle intersection = (Rectangle) player1.createIntersection(roomObjects.get(i)); 
                     
-            if (player1.getDx() < 0 && player1.x >= roomObjects.get(i).x) {
-                player1.x += intersection.getWidth();
-            }
-            
-            if (player1.getDy() < 0 && player1.y >= roomObjects.get(i).y) {
-                player1.y += intersection.getHeight();
-            }
-            
-            if (player1.getDx() > 0 && player1.x <= roomObjects.get(i).x) {
-               player1.x -= intersection.getWidth();  
-            }
-            
-            if (player1.getDy() > 0 && player1.y <= roomObjects.get(i).y) {
-                player1.y -= intersection.getHeight(); 
+                if (player1.getDx() < 0 && player1.x >= roomObjects.get(i).x) {
+                    player1.x += intersection.getWidth();
+                }
+
+                if (player1.getDy() < 0 && player1.y >= roomObjects.get(i).y) {
+                    player1.y += intersection.getHeight();
+                }
+
+                if (player1.getDx() > 0 && player1.x <= roomObjects.get(i).x) {
+                   player1.x -= intersection.getWidth();  
+                }
+
+                if (player1.getDy() > 0 && player1.y <= roomObjects.get(i).y) {
+                    player1.y -= intersection.getHeight(); 
+                }
             }
         }
     }
-}
      
     @Override
     public void actionPerformed(ActionEvent e) {
         Object o = e.getSource();
-
+        
         if (o == timer1) {
             this.repaint();
         }
@@ -221,6 +218,5 @@ public class Room extends JPanel implements ActionListener, KeyListener{
     public void keyReleased(KeyEvent e) {
         player1.setDx(0);
         player1.setDy(0);
-    }
-    
+    }    
 }

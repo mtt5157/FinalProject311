@@ -58,7 +58,6 @@ public class Background extends Rectangle{
         this.size = new Dimension(panel.getWidth(), panel.getHeight());
     }
     
-    
     /**
      * @return the image
      */
