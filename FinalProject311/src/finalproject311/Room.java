@@ -82,7 +82,8 @@ public class Room extends JPanel implements ActionListener, KeyListener{
        this.player1 = new player(500, 500);
        this.background = new Background("src/Images/carpet.png", Background.TILED, this);
        this.addKeyListener(this);
-       this.setFocusable(true);    
+       this.setFocusable(true);
+       
     }
 
     private void addObjectsToArayList(){

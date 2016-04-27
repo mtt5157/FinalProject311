@@ -108,9 +108,9 @@ public class Floor extends JPanel implements ActionListener, KeyListener{
         Divider divider1 = new Divider(150, 10, 350, 25, "Divider 1");
         Divider divider2 = new Divider(150, 10, 350, 170, "Divider 2");
         Divider divider3 = new Divider(150, 10, 350, 315, "Divider 3");
-        Trashcan trashcan1 = new Trashcan(30, 125, 0, 175, "Trashcan");
+        //Trashcan trashcan1 = new Trashcan(30, 125, 0, 175, "Trashcan");
         
-        trashcans.add(trashcan1);
+       // trashcans.add(trashcan1);
         
         dividers.add(divider1);
         dividers.add(divider2);
