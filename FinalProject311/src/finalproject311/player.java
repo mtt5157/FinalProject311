@@ -55,6 +55,11 @@ public class player extends Rectangle {
                 else if(step ==1)
                 {
                     imagePath = "src/Images/left_step.png";
+                    step = 2;
+                }
+                else if(step ==2)
+                {
+                    imagePath = "src/Images/left_step_2.png";
                     step = 0;
                 }
                 playerImage = new ImageIcon(imagePath).getImage();
@@ -70,6 +75,11 @@ public class player extends Rectangle {
                 else if(step ==1)
                 {
                     imagePath = "src/Images/right_step.png";
+                    step = 2;
+                }
+                 else if(step ==2)
+                {
+                    imagePath = "src/Images/right_step_2.png";
                     step = 0;
                 }
                 playerImage = new ImageIcon(imagePath).getImage();
@@ -87,6 +97,11 @@ public class player extends Rectangle {
                     imagePath = "src/Images/front_step.png";
                     step = 0;
                 }
+                else if(step ==2)
+                {
+                    imagePath = "src/Images/front_step.png";
+                    step = 0;
+                }
                 playerImage = new ImageIcon(imagePath).getImage();
                
             }
@@ -100,6 +115,11 @@ public class player extends Rectangle {
                 else if(step ==1)
                 {
                     imagePath = "src/Images/back_step.png";
+                    step = 2;
+                }
+                else if(step ==2)
+                {
+                    imagePath = "src/Images/back_step_2.png";
                     step = 0;
                 }
                 playerImage = new ImageIcon(imagePath).getImage();
