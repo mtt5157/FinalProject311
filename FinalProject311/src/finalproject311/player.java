@@ -31,7 +31,7 @@ public class player extends Rectangle {
         public player(int panelWidth, int panelHeight) {
             this.dx = 0;
             this.dy = 0;
-            playerImage = new ImageIcon("src/Images/sprite.png").getImage();
+            playerImage = new ImageIcon("src/Images/player_back.png").getImage();
             this.size = new Dimension(panelWidth, panelHeight);
             this.playerSize = 50;
             this.playerSpeed = 10;
@@ -43,6 +43,22 @@ public class player extends Rectangle {
         public void move() {
             this.x += dx;
             this.y += dy;
+            if(dx == -20)
+            {
+                playerImage = new ImageIcon("src/Images/player_left.png").getImage();
+            }
+            else if(dx == 20)
+            {
+                playerImage = new ImageIcon("src/Images/player_right.png").getImage();
+            }
+            else if(dy == -20)
+            {
+                playerImage = new ImageIcon("src/Images/player_front.png").getImage();
+            }
+            else if(dy == 20)
+            {
+                 playerImage = new ImageIcon("src/Images/player_back.png").getImage();
+            }
         }
 
 //        public void keyPressed(KeyEvent e){
