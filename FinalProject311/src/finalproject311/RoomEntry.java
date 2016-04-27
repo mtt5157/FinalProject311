@@ -8,6 +8,7 @@ package finalproject311;
 
 
 
+import static java.awt.Color.RED;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import javax.swing.JPanel;
@@ -39,7 +40,8 @@ public class RoomEntry extends Rectangle {
        }
        
        public void paintComponent(Graphics g){
-           g.drawRect(x, y, 30, 30);
+           g.setColor(RED);
+           g.fillRect(x, y, 30, 60);
        }
        
        public int getNum(){

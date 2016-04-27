@@ -57,15 +57,15 @@ public class Floor extends JPanel implements ActionListener, KeyListener{
         
         rooms.add(new Room(202));
         rooms.add(new Room(204));
-        rooms.add(new Room(206));
-        rooms.add(new Room(208));
-        rooms.add(new Room(210));
+//        rooms.add(new Room(206));
+//        rooms.add(new Room(208));
+//        rooms.add(new Room(210));
         
-        entries.add(new RoomEntry(202, 50, 100, rooms.get(0)));
-        entries.add(new RoomEntry(204, 50, 150, rooms.get(1)));
-        entries.add(new RoomEntry(208, 50, 250, rooms.get(3)));
-        entries.add(new RoomEntry(206, 50, 250, rooms.get(2)));
-        entries.add(new RoomEntry(210, 50, 300, rooms.get(4)));
+        entries.add(new RoomEntry(202, 0, 100, rooms.get(0)));
+        entries.add(new RoomEntry(204, 0, 350, rooms.get(1)));
+//        entries.add(new RoomEntry(208, 50, 250, rooms.get(3)));
+//        entries.add(new RoomEntry(206, 50, 250, rooms.get(2)));
+//        entries.add(new RoomEntry(210, 50, 300, rooms.get(4)));
         
         player1 = new player(500,500);
         
