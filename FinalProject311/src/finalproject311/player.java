@@ -77,7 +77,7 @@ public class player extends Rectangle {
 
         public void paintComponent(Graphics g) {
             move();
-            g.drawRect(x, y, 30, 30);
+            g.drawImage(playerImage, x, y, width, height, panel1);
         }
         
         public void setX( int x){
