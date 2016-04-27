@@ -55,8 +55,8 @@ public class Floor extends JPanel implements ActionListener, KeyListener{
         collision =false;
        
         
-        rooms.add(new Room(202));
-        rooms.add(new Room(204));
+        rooms.add(new Room(202, this));
+        rooms.add(new Room(204, this));
 
         
         entries.add(new RoomEntry(202, 0, 100, rooms.get(0)));
@@ -94,7 +94,7 @@ public class Floor extends JPanel implements ActionListener, KeyListener{
 
         for (int i = 0; i < entries.size(); i++) {
             if (player1.intersects(entries.get(i))) {
-                controller.floorToRoom(entries.get(i).getRoom());
+                getController().floorToRoom(entries.get(i).getRoom());
                  System.out.println("Collision");
             }
         }
@@ -195,6 +195,20 @@ public class Floor extends JPanel implements ActionListener, KeyListener{
     public void keyReleased(KeyEvent e) {
         player1.setDx(0);
         player1.setDy(0);
+    }
+
+    /**
+     * @return the controller
+     */
+    public FloorController getController() {
+        return controller;
+    }
+
+    /**
+     * @param controller the controller to set
+     */
+    public void setController(FloorController controller) {
+        this.controller = controller;
     }
     
     

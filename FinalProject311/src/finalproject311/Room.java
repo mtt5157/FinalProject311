@@ -68,12 +68,18 @@ public class Room extends JPanel implements ActionListener, KeyListener{
     private player player1;
     private Timer timer1;
     private Image carpet;
+    private Floor roomFloor;
+    private RoomEntry exit;
     
-    public Room(int theRoomNumber){
+    public Room(int theRoomNumber, Floor theFloor){
        super();
+       
+       this.roomFloor = theFloor;
+       this.roomNumber =  theRoomNumber;
+       this.exit = new RoomEntry(roomNumber, 400, -50, theFloor);
        this.carpet = new  ImageIcon("src/Images/carpet.png").getImage();
        this.setSize(500, 500);
-       this.roomNumber =  theRoomNumber;
+       
        this.roomObjects = new ArrayList<>();
        this.timer1 = new Timer(50, this);
        this.timer1.start();
@@ -85,6 +91,8 @@ public class Room extends JPanel implements ActionListener, KeyListener{
        this.setFocusable(true);
        
     }
+    
+    
 
     private void addObjectsToArayList(){
         this.roomObjects.add(podium);
@@ -156,12 +164,16 @@ public class Room extends JPanel implements ActionListener, KeyListener{
        checkObjectCollision();
        background.paintComponent(g);
        player1.paintComponent(g);
+       exit.paintComponent(g);
        for (int i = 0; i<roomObjects.size(); i++){
             roomObjects.get(i).paintComponent(g);
         }  
     }
     
     private void checkObjectCollision(){
+        if (player1.intersects(exit)){
+            this.roomFloor.getController().roomToFloor(roomFloor);
+        }
         
         for(int i = 0; i < roomObjects.size(); i++){
             
