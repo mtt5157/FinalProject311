@@ -60,10 +60,11 @@ public class Room extends JPanel implements ActionListener, KeyListener{
     private RoomObject wallUD2;
     private RoomObject wallLR1;
     private RoomObject wallLR2;
-       
+    
+    private Background background;
     private int roomNumber;
     private ArrayList<RoomObject>  roomObjects;
-    private ArrayList<Object> computers;
+    private ArrayList<RoomObject> misc;
     private Image roomImage;
     private player player1;
     private Timer timer1;
@@ -72,29 +73,35 @@ public class Room extends JPanel implements ActionListener, KeyListener{
     
     public Room(int theRoomNumber){
        super();
+       this.carpet = new  ImageIcon("src/Images/carpet.png").getImage();
+       this.setSize(500, 500);
        this.roomNumber =  theRoomNumber;
        this.roomObjects = new ArrayList<>();
        this.timer1 = new Timer(50, this);
        this.timer1.start();
-       this.computers = new ArrayList<>();
+       this.misc = new ArrayList<>();
        init();
        addObjectsToArayList();
        this.player1 = new player(500, 500);
-       this.carpet = new  ImageIcon("src/Images/carpet.png").getImage();
+       this.background = new Background("src/Images/carpet.png", Background.TILED, this);
+       
        this.addKeyListener(this);
        this.setFocusable(true);
        
     }
     
+    /*
     public void placeCarpet(Graphics g){
        int carpetWidth = 128;
        int carpetHeight = 119;
         for (int y = 0; y < getHeight(); y += carpetHeight) {
                 for (int x = 0; x < getWidth(); x += carpetWidth) {
+                    
                     g.drawImage(carpet, x, y, this);
                 }
             } 
     }
+    */
     
     private void addObjectsToArayList(){
         this.roomObjects.add(podium);
@@ -128,7 +135,6 @@ public class Room extends JPanel implements ActionListener, KeyListener{
         rightDesk4 = new RoomObject(285, 410, TableHeight, LongtableWidth, this, "src/Images/classroomDesks.png");
         printer = new RoomObject(455, 25, PrinterWidth, PrinterHeight, this, "src/Images/printer.png");
         trashcan = new RoomObject(455, 60, TrashcanWidth, TrashcanHeight, this, "src/Images/trashcan.png");
-        key = new RoomObject(250, 250, FrontTableWidth, FrontTableHeight, this, "src/Images/printer.png");
         wallUD1 = new RoomObject(-15,0, WallUDWidth, WallUDHeight, this, "src/Images/classroomDesks.png");
         wallUD2 = new RoomObject(485,0, WallUDWidth, WallUDHeight, this, "src/Images/classroomDesks.png");
         wallLR1 = new RoomObject(0, -15, WallLRWidth, WallLRHeight, this, "src/Images/classroomDesks.png");
@@ -163,32 +169,65 @@ public class Room extends JPanel implements ActionListener, KeyListener{
     /**
      * @return the computers
      */
-    public ArrayList<Object> getComputers() {
-        return computers;
+    public ArrayList<RoomObject> getComputers() {
+        return misc;
     }
 
     /**
-     * @param computers the computers to set
+     * @param background the computers to set
      */
-    public void setComputers(ArrayList<Object> computers) {
-        this.computers = computers;
+    public void setComputers(ArrayList<RoomObject> background) {
+        this.misc = background;
     }
 
     @Override
     public void paintComponent(Graphics g){
        super.paintComponent(g);
        g.clearRect(0, 0, this.getWidth(), this.getHeight());
-       this.placeCarpet(g);
+       checkObjectCollision();
+       //this.placeCarpet(g);
+       background.paintComponent(g);
        player1.paintComponent(g);
        for (int i = 0; i<roomObjects.size(); i++)
         {
             roomObjects.get(i).paintComponent(g);
         }
+       
+       
           
         
     }
     
+   
     
+    private void checkObjectCollision(){
+        for(int i = 0; i < roomObjects.size(); i++){
+            if (player1.intersects(roomObjects.get(i))){
+               Rectangle intersection = (Rectangle) player1.createIntersection(roomObjects.get(i)); 
+                    
+            if (player1.getDx() < 0 && player1.x >= roomObjects.get(i).x) {
+                player1.x += intersection.getWidth();
+            }
+            
+            if (player1.getDy() < 0 && player1.y >= roomObjects.get(i).y) {
+                player1.y += intersection.getHeight();
+            }
+            
+            if (player1.getDx() > 0 && player1.x <= roomObjects.get(i).x) {
+               player1.x -= intersection.getWidth();
+                
+            }
+            
+            if (player1.getDy() > 0 && player1.y <= roomObjects.get(i).y) {
+                player1.y -= intersection.getHeight();
+               
+            }
+
+            
+            }
+        }
+
+    }
      
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -208,7 +247,6 @@ public class Room extends JPanel implements ActionListener, KeyListener{
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_LEFT) {
             player1.setDx(-20);
-
             System.out.println("Typed");
         } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
             player1.setDx(20);

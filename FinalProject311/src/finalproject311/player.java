@@ -70,6 +70,13 @@ public class player extends Rectangle {
         public void setDx(int dx) {
             this.dx = dx;
         }
+        public int getDx(){
+            return this.dx;
+        }
+        
+        public int getDy(){
+            return this.dy;
+        }
 
         public void setDy(int dy) {
             this.dy = dy;
