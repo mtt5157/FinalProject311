@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -23,8 +24,8 @@ import javax.swing.Timer;
 public class Room extends JPanel implements ActionListener, KeyListener{
     
     
-    public static final int PodeumWidth = 35;
-    public static final int PodeumHeight = 35;
+    public static final int PodeumWidth = 85;
+    public static final int PodeumHeight = 65;
     public static final int LongtableWidth = 200;
     public static final int MiddletableWidth = 90;
     public static final int ShorttableWidth = 18;
@@ -42,7 +43,7 @@ public class Room extends JPanel implements ActionListener, KeyListener{
     
     
     
-    private RoomObject podeum;
+    private RoomObject podium;
     private RoomObject frontTable;
     private RoomObject leftDesk1;
     private RoomObject leftDesk2;
@@ -66,11 +67,11 @@ public class Room extends JPanel implements ActionListener, KeyListener{
     private Image roomImage;
     private player player1;
     private Timer timer1;
+    private Image carpet;
     //private GameFrame theFrame;
     
     public Room(int theRoomNumber){
        super();
-       
        this.roomNumber =  theRoomNumber;
        this.roomObjects = new ArrayList<>();
        this.timer1 = new Timer(50, this);
@@ -79,14 +80,24 @@ public class Room extends JPanel implements ActionListener, KeyListener{
        init();
        addObjectsToArayList();
        this.player1 = new player(500, 500);
-       
+       this.carpet = new  ImageIcon("src/Images/carpet.png").getImage();
        this.addKeyListener(this);
        this.setFocusable(true);
        
     }
     
+    public void placeCarpet(Graphics g){
+       int carpetWidth = 128;
+       int carpetHeight = 119;
+        for (int y = 0; y < getHeight(); y += carpetHeight) {
+                for (int x = 0; x < getWidth(); x += carpetWidth) {
+                    g.drawImage(carpet, x, y, this);
+                }
+            } 
+    }
+    
     private void addObjectsToArayList(){
-        this.roomObjects.add(podeum);
+        this.roomObjects.add(podium);
         this.roomObjects.add(frontTable);
         this.roomObjects.add(leftDesk1);
         this.roomObjects.add(leftDesk2);
@@ -105,23 +116,23 @@ public class Room extends JPanel implements ActionListener, KeyListener{
     }
 
     private void init() {
-        podeum = new RoomObject(100, 20, PodeumWidth, PodeumHeight, this);
-        frontTable = new RoomObject(0, 0,FrontTableWidth, FrontTableHeight, this);
-        leftDesk1 = new RoomObject(0, 155, TableHeight, LongtableWidth,this);
-        leftDesk2 = new RoomObject(0, 240,TableHeight, LongtableWidth, this);
-        leftDesk3 = new RoomObject(0, 325,TableHeight, LongtableWidth, this);
-        leftDesk4 = new RoomObject(0, 410,TableHeight, LongtableWidth, this);
-        rightDesk1 = new RoomObject(285, 155,TableHeight, LongtableWidth, this);
-        rightDesk2 = new RoomObject(285, 240,TableHeight, LongtableWidth, this);
-        rightDesk3 = new RoomObject(285, 325,TableHeight, LongtableWidth, this);
-        rightDesk4 = new RoomObject(285, 410, TableHeight, LongtableWidth, this);
-        printer = new RoomObject(455, 25, PrinterWidth, PrinterHeight, this);
-        trashcan = new RoomObject(455, 60, TrashcanWidth, TrashcanHeight, this);
-        key = new RoomObject(250, 250, FrontTableWidth, FrontTableHeight, this);
-        wallUD1 = new RoomObject(-15,0, WallUDWidth, WallUDHeight, this);
-        wallUD2 = new RoomObject(485,0, WallUDWidth, WallUDHeight, this);
-        wallLR1 = new RoomObject(0, -15, WallLRWidth, WallLRHeight, this);
-        wallLR2 = new RoomObject(0, 485, WallLRWidth, WallLRHeight, this);   
+        podium = new RoomObject(100, 20, PodeumWidth, PodeumHeight, this, "src/Images/podium.png");
+        frontTable = new RoomObject(0, 0,FrontTableWidth, FrontTableHeight, this, "src/Images/shortDesk.png");
+        leftDesk1 = new RoomObject(0, 155, TableHeight, LongtableWidth,this, "src/Images/classroomDesks.png");
+        leftDesk2 = new RoomObject(0, 240,TableHeight, LongtableWidth, this, "src/Images/classroomDesks.png");
+        leftDesk3 = new RoomObject(0, 325,TableHeight, LongtableWidth, this, "src/Images/classroomDesks.png");
+        leftDesk4 = new RoomObject(0, 410,TableHeight, LongtableWidth, this, "src/Images/classroomDesks.png");
+        rightDesk1 = new RoomObject(285, 155,TableHeight, LongtableWidth, this, "src/Images/classroomDesks.png");
+        rightDesk2 = new RoomObject(285, 240,TableHeight, LongtableWidth, this, "src/Images/classroomDesks.png");
+        rightDesk3 = new RoomObject(285, 325,TableHeight, LongtableWidth, this, "src/Images/classroomDesks.png");
+        rightDesk4 = new RoomObject(285, 410, TableHeight, LongtableWidth, this, "src/Images/classroomDesks.png");
+        printer = new RoomObject(455, 25, PrinterWidth, PrinterHeight, this, "src/Images/printer.png");
+        trashcan = new RoomObject(455, 60, TrashcanWidth, TrashcanHeight, this, "src/Images/trashcan.png");
+        key = new RoomObject(250, 250, FrontTableWidth, FrontTableHeight, this, "src/Images/printer.png");
+        wallUD1 = new RoomObject(-15,0, WallUDWidth, WallUDHeight, this, "src/Images/classroomDesks.png");
+        wallUD2 = new RoomObject(485,0, WallUDWidth, WallUDHeight, this, "src/Images/classroomDesks.png");
+        wallLR1 = new RoomObject(0, -15, WallLRWidth, WallLRHeight, this, "src/Images/classroomDesks.png");
+        wallLR2 = new RoomObject(0, 485, WallLRWidth, WallLRHeight, this, "src/Images/classroomDesks.png");   
     }
     /**
      * @return the roomNumber
@@ -167,7 +178,7 @@ public class Room extends JPanel implements ActionListener, KeyListener{
     public void paintComponent(Graphics g){
        super.paintComponent(g);
        g.clearRect(0, 0, this.getWidth(), this.getHeight());
-       
+       this.placeCarpet(g);
        player1.paintComponent(g);
        for (int i = 0; i<roomObjects.size(); i++)
         {

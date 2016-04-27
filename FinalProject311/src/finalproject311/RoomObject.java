@@ -6,7 +6,9 @@
 package finalproject311;
 
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Rectangle;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 /**
@@ -19,18 +21,20 @@ public class RoomObject extends Rectangle {
     private int height;
     private int width;
     private JPanel panel1;
+    private Image objectImage;
     
-    public RoomObject(int x, int y, int height, int width, JPanel panel1){
+    public RoomObject(int x, int y, int height, int width, JPanel panel1, String objImageSource){
         this.xLocation = x;
         this.yLocation = y;
         this.height = height;
         this.width = width;
         this.panel1=panel1;
+        this.objectImage = new ImageIcon(objImageSource).getImage();
         this.setBounds(this.xLocation, this.yLocation, this.width, this.height);
     }
     
     public void paintComponent(Graphics g){
-           g.drawRect(x, y, width, height);
+           g.drawImage(objectImage, x, y, width, height, panel1);
        }
 
     /**
