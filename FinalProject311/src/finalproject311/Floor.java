@@ -40,7 +40,7 @@ public class Floor extends JPanel implements ActionListener, KeyListener{
     private boolean collision;
    
  
-    public Floor(String floorName, FloorController cont1) {
+    public Floor( FloorController cont1) {
         this.floorName = floorName;
         this.controller = cont1;
         refreshTimer = new Timer(50, this);

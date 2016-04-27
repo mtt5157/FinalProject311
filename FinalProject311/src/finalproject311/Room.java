@@ -172,7 +172,7 @@ public class Room extends JPanel implements ActionListener, KeyListener{
     
     private void checkObjectCollision(){
         if (player1.intersects(exit)){
-            this.roomFloor.getController().roomToFloor(roomFloor);
+            this.roomFloor.getController().roomToFloor(this,roomFloor);
         }
         
         for(int i = 0; i < roomObjects.size(); i++){

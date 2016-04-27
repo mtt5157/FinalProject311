@@ -13,17 +13,20 @@ public class FloorController {
     private GameFrame frame1;
     private Floor floor1;
     private JPanel room1;
+    private ArrayList<Floor> floors;
    
     
     public FloorController(){
-        floor1 = new Floor("Floor1", this);
+        //floor1 = new Floor(this);
+       
         frame1 = new GameFrame("SimIST");
- 
-        frame1.add(floor1);
-        floor1.revalidate();
-        floor1.repaint();
-        floor1.setFocusable(true);
-        floor1.requestFocusInWindow();
+       floors = new ArrayList<>();
+       floors.add(new Floor(this));
+        frame1.add(floors.get(0));
+        floors.get(0).revalidate();
+        floors.get(0).repaint();
+        floors.get(0).setFocusable(true);
+        floors.get(0).requestFocusInWindow();
     }
 
     //protected ArrayList<Unit> unitList = new ArrayList<Unit>();
@@ -45,7 +48,7 @@ public class FloorController {
 //    }
     
     public void floorToRoom(JPanel room1){
-        frame1.remove(floor1);
+        frame1.remove(floors.get(0));
         frame1.add(room1);
         this.room1 = room1;
         room1.setFocusable(true);
@@ -56,12 +59,20 @@ public class FloorController {
     
    
     
-    public void roomToFloor(Floor floor)
+    public void roomToFloor(Room room1,Floor floor)
     {
         frame1.remove(room1);
-        frame1.add(floor);
-        frame1.revalidate();
-        frame1.repaint();
+        floors.remove(0);
+        floors.add(new Floor(this));
+        
+        frame1.add(floors.get(0));
+        this.floors.get(0).setFocusable(true);
+        this.floors.get(0).requestFocusInWindow();
+        
+        this.floors.get(0).revalidate();
+        this.floors.get(0).repaint();
+        //frame1.revalidate();
+        //frame1.repaint();
     }
             
 
