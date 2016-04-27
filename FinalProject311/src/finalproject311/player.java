@@ -21,12 +21,13 @@ public class player extends Rectangle {
 
        private int dx;
        private int dy;
-       private PlayerMovement pm;
+       
        private final Dimension size;
        private Image playerImage;
        private final int playerSize;
        private final int playerSpeed;
        private Floor panel1;
+       private int step = 0;
 
         public player(int panelWidth, int panelHeight) {
             this.dx = 0;
@@ -41,48 +42,71 @@ public class player extends Rectangle {
         }
 
         public void move() {
+            String imagePath = "";
             this.x += dx;
             this.y += dy;
             if(dx == -20)
             {
-                playerImage = new ImageIcon("src/Images/player_left.png").getImage();
+                if(step ==0)
+                {
+                    imagePath = "src/Images/player_left.png";
+                     step = 1;
+                }
+                else if(step ==1)
+                {
+                    imagePath = "src/Images/left_step.png";
+                    step = 0;
+                }
+                playerImage = new ImageIcon(imagePath).getImage();
+               
             }
             else if(dx == 20)
             {
-                playerImage = new ImageIcon("src/Images/player_right.png").getImage();
+                 if(step ==0)
+                {
+                    imagePath = "src/Images/player_right.png";
+                     step = 1;
+                }
+                else if(step ==1)
+                {
+                    imagePath = "src/Images/right_step.png";
+                    step = 0;
+                }
+                playerImage = new ImageIcon(imagePath).getImage();
+               
             }
             else if(dy == -20)
             {
-                playerImage = new ImageIcon("src/Images/player_front.png").getImage();
+                 if(step ==0)
+                {
+                    imagePath = "src/Images/player_front.png";
+                     step = 1;
+                }
+                else if(step ==1)
+                {
+                    imagePath = "src/Images/front_step.png";
+                    step = 0;
+                }
+                playerImage = new ImageIcon(imagePath).getImage();
+               
             }
             else if(dy == 20)
             {
-                 playerImage = new ImageIcon("src/Images/player_back.png").getImage();
+                 if(step ==0)
+                {
+                    imagePath = "src/Images/player_back.png";
+                     step = 1;
+                }
+                else if(step ==1)
+                {
+                    imagePath = "src/Images/back_step.png";
+                    step = 0;
+                }
+                playerImage = new ImageIcon(imagePath).getImage();
+                 
             }
         }
 
-//        public void keyPressed(KeyEvent e){
-//        if(e.getKeyCode() == KeyEvent.VK_LEFT)
-//        {
-//            this.dx = -20;
-//        }
-//        else if(e.getKeyCode() == KeyEvent.VK_RIGHT)
-//        {
-//            this.dx = 20;
-//        }
-//        else if(e.getKeyCode() == KeyEvent.VK_UP)
-//        {
-//            this.dx = -20;
-//        }
-//        else if(e.getKeyCode() == KeyEvent.VK_DOWN)
-//        {
-//            this.dx = 20;
-//        }
-//        }
-//         public void keyReleased(KeyEvent e){
-//             
-//        this.dx = 0;
-//        }
         public void setDx(int dx) {
             this.dx = dx;
         }
