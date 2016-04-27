@@ -40,12 +40,12 @@ public class Table extends Rectangle{
         g.fill3DRect(x, y, width, height, true);
     }
     
-    public double getCurrentX() {
-        return super.getX();
+    public int getCurrentX() {
+       return this.x;
     }
     
-    public double getCurrrentY() {
-        return super.getY();
+    public int getCurrentY() {
+        return this.y;
     }
     
   

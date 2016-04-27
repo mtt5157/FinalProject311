@@ -86,7 +86,7 @@ public class Floor extends JPanel implements ActionListener, KeyListener{
         paintObjects(g);
        // currentX = player1.getCurrentX();
        // currentY = player1.getCurrentY();
-       // checkObjectCollision();
+        checkObjectCollision();
         for (int i = 0; i < entries.size() - 1; i++) {
             entries.get(i).paintComponent(g);
         }
@@ -127,25 +127,23 @@ public class Floor extends JPanel implements ActionListener, KeyListener{
         
     }
     
-//    private void checkObjectCollision(){
-//        for (int i = 0; i < dividers.size(); i++){
-//            if (player1.intersects(dividers.get(i))){
-//                player1.setDx(-2);
-//                player1.setDy(-2);
-//                //player1.setDx(0);
-//                //player1.setDy(0);
-//            }
-//        }
-//        
-//        for(int i = 0; i<tables.size(); i++){
-//            if (player1.intersects(tables.get(i))){
-//                player1.setDx(-2);
-//                player1.setDy(-2);
-//                //player1.setDx(0);
-//                //player1.setDy(0);
-//            }
-//        }
-//    }
+    private void checkObjectCollision(){
+        for (int i = 0; i < dividers.size(); i++){
+            if (player1.intersects(dividers.get(i))){
+               player1.setX((dividers.get(i).getCurrentX()-30));
+               player1.setY(dividers.get(i).getCurrentY());
+            }
+        }
+        
+        for(int i = 0; i<tables.size(); i++){
+            if (player1.intersects(tables.get(i))){
+                player1.setX(tables.get(i).getCurrentX()-30);
+                player1.setY(tables.get(i).getCurrentY()+10);
+                //player1.setDx(0);
+                //player1.setDy(0);
+            }
+        }
+    }
 
     public void actionPerformed(ActionEvent e) {
         Object o = e.getSource();
