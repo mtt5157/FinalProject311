@@ -38,11 +38,13 @@ public class Floor extends JPanel implements ActionListener, KeyListener{
     private int currentX;
     private int currentY;
     private boolean collision;
+    private Background tileFloor;
    
  
     public Floor( FloorController cont1) {
         this.floorName = floorName;
         this.controller = cont1;
+        this.setSize(500, 500);
         refreshTimer = new Timer(50, this);
         refreshTimer.start();
         rooms = new ArrayList<>();
@@ -51,6 +53,7 @@ public class Floor extends JPanel implements ActionListener, KeyListener{
         this.tables = new ArrayList<Table>();
         this.trashcans = new ArrayList<>();
         this.obstacles = new ArrayList<>();
+        this.tileFloor = new Background("src/Images/floor_image.png", Background.TILED, this);
         populateObjects();
         collision =false;
        
@@ -77,7 +80,7 @@ public class Floor extends JPanel implements ActionListener, KeyListener{
         
         super.paintComponent(g);
         g.clearRect(0, 0, this.getWidth(), this.getHeight());
-
+        tileFloor.paintComponent(g);
         player1.paintComponent(g);
         paintObjects(g);
      
