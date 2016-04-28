@@ -34,7 +34,7 @@ public class player extends Rectangle {
             this.dy = 0;
             playerImage = new ImageIcon("src/Images/player_back.png").getImage();
             this.size = new Dimension(panelWidth, panelHeight);
-            this.playerSize = 50;
+            this.playerSize = 35;
             this.playerSpeed = 10;
             
             this.setBounds(200, 50, playerSize, playerSize);
@@ -47,80 +47,80 @@ public class player extends Rectangle {
             this.y += dy;
             if(dx == -20)
             {
-                if(step ==0)
+                if(getStep() ==0)
                 {
                     imagePath = "src/Images/player_left.png";
-                     step = 1;
+                     setStep(1);
                 }
-                else if(step ==1)
+                else if(getStep() ==1)
                 {
                     imagePath = "src/Images/left_step.png";
-                    step = 2;
+                    setStep(2);
                 }
-                else if(step ==2)
+                else if(getStep() ==2)
                 {
                     imagePath = "src/Images/left_step_2.png";
-                    step = 0;
+                    setStep(0);
                 }
                 playerImage = new ImageIcon(imagePath).getImage();
                
             }
             else if(dx == 20)
             {
-                 if(step ==0)
+                 if(getStep() ==0)
                 {
                     imagePath = "src/Images/player_right.png";
-                     step = 1;
+                     setStep(1);
                 }
-                else if(step ==1)
+                else if(getStep() ==1)
                 {
                     imagePath = "src/Images/right_step.png";
-                    step = 2;
+                    setStep(2);
                 }
-                 else if(step ==2)
+                 else if(getStep() ==2)
                 {
                     imagePath = "src/Images/right_step_2.png";
-                    step = 0;
+                    setStep(0);
                 }
                 playerImage = new ImageIcon(imagePath).getImage();
                
             }
             else if(dy == -20)
             {
-                 if(step ==0)
+                 if(getStep() ==0)
                 {
                     imagePath = "src/Images/player_front.png";
-                     step = 1;
+                     setStep(1);
                 }
-                else if(step ==1)
+                else if(getStep() ==1)
                 {
                     imagePath = "src/Images/front_step.png";
-                    step = 0;
+                    setStep(0);
                 }
-                else if(step ==2)
+                else if(getStep() ==2)
                 {
                     imagePath = "src/Images/front_step.png";
-                    step = 0;
+                    setStep(0);
                 }
                 playerImage = new ImageIcon(imagePath).getImage();
                
             }
             else if(dy == 20)
             {
-                 if(step ==0)
+                 if(getStep() ==0)
                 {
                     imagePath = "src/Images/player_back.png";
-                     step = 1;
+                     setStep(1);
                 }
-                else if(step ==1)
+                else if(getStep() ==1)
                 {
                     imagePath = "src/Images/back_step.png";
-                    step = 2;
+                    setStep(2);
                 }
-                else if(step ==2)
+                else if(getStep() ==2)
                 {
                     imagePath = "src/Images/back_step_2.png";
-                    step = 0;
+                    setStep(0);
                 }
                 playerImage = new ImageIcon(imagePath).getImage();
                  
@@ -154,6 +154,20 @@ public class player extends Rectangle {
         public void setY(int y){
             this.y =y;
         }
+
+    /**
+     * @return the step
+     */
+    public int getStep() {
+        return step;
+    }
+
+    /**
+     * @param step the step to set
+     */
+    public void setStep(int step) {
+        this.step = step;
+    }
     
     
 }

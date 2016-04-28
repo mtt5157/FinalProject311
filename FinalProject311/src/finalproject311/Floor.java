@@ -53,7 +53,7 @@ public class Floor extends JPanel implements ActionListener, KeyListener{
         this.tables = new ArrayList<Table>();
         this.trashcans = new ArrayList<>();
         this.obstacles = new ArrayList<>();
-        this.tileFloor = new Background("src/Images/floor_image.png", Background.TILED, this);
+        this.tileFloor = new Background("src/Images/floor_tile2.png", Background.TILED, this);
         populateObjects();
         collision =false;
        
