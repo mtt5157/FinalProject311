@@ -27,11 +27,14 @@ public class FloorController {
         floors.get(0).repaint();
         floors.get(0).setFocusable(true);
         floors.get(0).requestFocusInWindow();
+        
+        
     }
 
     
     public void floorToRoom(JPanel room1){
         frame1.remove(floors.get(0));
+        
         frame1.add(room1);
         this.room1 = room1;
         room1.setFocusable(true);
@@ -42,18 +45,21 @@ public class FloorController {
     
    
     
-    public void roomToFloor(Room room1,Floor floor)
+    public void roomToFloor(Room room1)
     {
         frame1.remove(room1);
         floors.remove(0);
         floors.add(new Floor(this));
         
         frame1.add(floors.get(0));
-        this.floors.get(0).setFocusable(true);
-        this.floors.get(0).requestFocusInWindow();
+       
+        floors.get(0).getPlayer().setX(50);
+        floors.get(0).getPlayer().setY(100);
+        floors.get(0).setFocusable(true);
+        floors.get(0).requestFocusInWindow();
         
-        this.floors.get(0).revalidate();
-        this.floors.get(0).repaint();
+        frame1.revalidate();
+        frame1.repaint();
         
     }
     
@@ -64,13 +70,15 @@ public class FloorController {
         floors.add(new Floor(this));
         
         frame1.add(floors.get(0));
+        floors.get(0).getPlayer().setX(50);
+        floors.get(0).getPlayer().setY(350);
         this.floors.get(0).setFocusable(true);
         this.floors.get(0).requestFocusInWindow();
         
         this.floors.get(0).revalidate();
         this.floors.get(0).repaint();
        
-    }
+   }
             
 
 }

@@ -66,7 +66,7 @@ public class Floor extends JPanel implements ActionListener, KeyListener{
         entries.add(new RoomEntry(204, 0, 350, rooms.get(1)));
 
         
-        player1 = new player(500,500);
+        player1 = new player(200, 50,500,500);
         
        
         
@@ -280,6 +280,10 @@ public class Floor extends JPanel implements ActionListener, KeyListener{
         for (int i = 0; i < entries.size(); i++) {
             entries.get(i).paintComponent(30, 60, g);
         }
+    }
+    
+    public player getPlayer(){
+        return this.player1;
     }
     
     

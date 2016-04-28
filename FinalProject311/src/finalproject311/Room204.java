@@ -69,7 +69,7 @@ public class Room204 extends JPanel implements ActionListener, KeyListener {
        this.timer1.start();
        init();
        addObjectsToArayList();
-       this.player1 = new player(500, 500);
+       this.player1 = new player(300,30,500, 500);
        this.background = new Background("src/Images/carpet.png", Background.TILED, this);
        this.addKeyListener(this);
        this.setFocusable(true);    

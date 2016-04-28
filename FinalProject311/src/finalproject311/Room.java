@@ -85,7 +85,7 @@ public class Room extends JPanel implements ActionListener, KeyListener{
        this.timer1.start();
        init();
        addObjectsToArayList();
-       this.player1 = new player(500, 500);
+       this.player1 = new player(400, 30,300, 500);
        this.background = new Background("src/Images/carpet.png", Background.TILED, this);
        this.addKeyListener(this);
        this.setFocusable(true);
@@ -172,7 +172,7 @@ public class Room extends JPanel implements ActionListener, KeyListener{
     
     private void checkObjectCollision(Graphics g){
         if (player1.intersects(exit)){
-            this.roomFloor.getController().roomToFloor(this,roomFloor);
+            this.roomFloor.getController().roomToFloor(this);
         }
         
         for(int i = 0; i < roomObjects.size(); i++){

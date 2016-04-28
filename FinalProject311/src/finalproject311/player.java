@@ -29,7 +29,7 @@ public class player extends Rectangle {
        private Floor panel1;
        private int step = 0;
 
-        public player(int panelWidth, int panelHeight) {
+        public player(int xx, int yy,int panelWidth, int panelHeight) {
             this.dx = 0;
             this.dy = 0;
             playerImage = new ImageIcon("src/Images/player_back.png").getImage();
@@ -37,7 +37,7 @@ public class player extends Rectangle {
             this.playerSize = 30;
             this.playerSpeed = 10;
             
-            this.setBounds(200, 50, playerSize, playerSize);
+            this.setBounds(xx, yy,  playerSize, playerSize);
             
         }
 
