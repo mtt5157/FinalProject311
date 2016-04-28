@@ -26,6 +26,7 @@ public class Background extends Rectangle{
       
     private final int FLOOR = 0;
     private final int ROOM = 1;
+    private final int ROOM204 = 2;
     
     private Image image;
     private int panelType;
@@ -36,26 +37,24 @@ public class Background extends Rectangle{
     private int w;
     private int h;
 
-    public Background(String floorImageString, int style, Floor panel1){
-        this.image =new  ImageIcon(floorImageString).getImage();
-        
-        this.panel = panel1;
-        this.w = image.getWidth(panel);
-        this.h = image.getHeight(panel);
-        this.panelType = FLOOR;
-        this.style = style;
-        this.size = new Dimension(panel.getWidth(), panel.getHeight());
-    }
-    
-    
-    public Background(String roomImageString, int style, Room panel1){
+    public Background(String roomImageString, int style, JPanel panel1){
         this.image =new  ImageIcon(roomImageString).getImage();
         this.panel = panel1;
         this.w = image.getWidth(panel);
         this.h = image.getHeight(panel);
-        this.panelType = ROOM;
         this.style = style;
         this.size = new Dimension(panel.getWidth(), panel.getHeight());
+        this.setPanelType();
+    }
+    
+    public void setPanelType() {
+        if(this.panel instanceof Room) {
+            this.panelType = ROOM;
+        } else if (this.panel instanceof Floor) {
+            this.panelType = FLOOR;
+        } else {
+            this.panelType = ROOM204;
+        }
     }
     
     /**
@@ -77,13 +76,6 @@ public class Background extends Rectangle{
      */
     public int getPanelType() {
         return panelType;
-    }
-
-    /**
-     * @param panelType the panelType to set
-     */
-    public void setPanelType(int panelType) {
-        this.panelType = panelType;
     }
 
     /**
