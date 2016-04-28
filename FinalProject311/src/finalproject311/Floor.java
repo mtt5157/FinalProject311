@@ -59,7 +59,7 @@ public class Floor extends JPanel implements ActionListener, KeyListener{
        
         
         rooms.add(new Room(202, this));
-        rooms.add(new Room(204, this));
+        rooms.add(new Room204(204, this));
 
         
         entries.add(new RoomEntry(202, 0, 100, rooms.get(0)));
@@ -234,23 +234,23 @@ public class Floor extends JPanel implements ActionListener, KeyListener{
     public void keyPressed(KeyEvent e) { 
             
            if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            player1.setDx(-20);
+            player1.setDx(-10);
           
             System.out.println("Typed");
             }
            
             else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            player1.setDx(20);
+            player1.setDx(10);
       
             } 
             
             else if (e.getKeyCode() == KeyEvent.VK_UP) {
-            player1.setDy(-20);
+            player1.setDy(-10);
        
             } 
             
             else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-            player1.setDy(20);
+            player1.setDy(10);
          
         }
      }

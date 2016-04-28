@@ -34,7 +34,7 @@ public class player extends Rectangle {
             this.dy = 0;
             playerImage = new ImageIcon("src/Images/player_back.png").getImage();
             this.size = new Dimension(panelWidth, panelHeight);
-            this.playerSize = 35;
+            this.playerSize = 30;
             this.playerSpeed = 10;
             
             this.setBounds(200, 50, playerSize, playerSize);
@@ -45,7 +45,7 @@ public class player extends Rectangle {
             String imagePath = "";
             this.x += dx;
             this.y += dy;
-            if(dx == -20)
+            if(dx == -10)
             {
                 if(getStep() ==0)
                 {
@@ -59,13 +59,18 @@ public class player extends Rectangle {
                 }
                 else if(getStep() ==2)
                 {
+                    imagePath = "src/Images/player_left.png";
+                    setStep(3);
+                }
+                else if(getStep() ==3)
+                {
                     imagePath = "src/Images/left_step_2.png";
                     setStep(0);
                 }
                 playerImage = new ImageIcon(imagePath).getImage();
                
             }
-            else if(dx == 20)
+            else if(dx == 10)
             {
                  if(getStep() ==0)
                 {
@@ -77,7 +82,12 @@ public class player extends Rectangle {
                     imagePath = "src/Images/right_step.png";
                     setStep(2);
                 }
-                 else if(getStep() ==2)
+                else if(getStep() ==2)
+                {
+                    imagePath = "src/Images/player_right.png";
+                    setStep(3);
+                }
+                else if(getStep() ==3)
                 {
                     imagePath = "src/Images/right_step_2.png";
                     setStep(0);
@@ -85,7 +95,7 @@ public class player extends Rectangle {
                 playerImage = new ImageIcon(imagePath).getImage();
                
             }
-            else if(dy == -20)
+            else if(dy == -10)
             {
                  if(getStep() ==0)
                 {
@@ -102,10 +112,15 @@ public class player extends Rectangle {
                     imagePath = "src/Images/front_step.png";
                     setStep(0);
                 }
+                 else if(getStep() ==3)
+                {
+                    imagePath = "src/Images/front_step.png";
+                    setStep(0);
+                }
                 playerImage = new ImageIcon(imagePath).getImage();
                
             }
-            else if(dy == 20)
+            else if(dy == 10)
             {
                  if(getStep() ==0)
                 {
@@ -118,6 +133,11 @@ public class player extends Rectangle {
                     setStep(2);
                 }
                 else if(getStep() ==2)
+                {
+                    imagePath = "src/Images/back_step_2.png";
+                    setStep(0);
+                }
+                else if(getStep() ==3)
                 {
                     imagePath = "src/Images/back_step_2.png";
                     setStep(0);

@@ -225,14 +225,14 @@ public class Room204 extends JPanel implements ActionListener, KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            player1.setDx(-20);
+            player1.setDx(-10);
             System.out.println("Typed");
         } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            player1.setDx(20);
+            player1.setDx(10);
         } else if (e.getKeyCode() == KeyEvent.VK_UP) {
-            player1.setDy(-20);
+            player1.setDy(-10);
         } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-            player1.setDy(20);
+            player1.setDy(10);
         }
     }
 
