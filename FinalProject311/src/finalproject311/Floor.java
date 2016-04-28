@@ -84,15 +84,12 @@ public class Floor extends JPanel implements ActionListener, KeyListener{
         player1.paintComponent(g);
         paintObjects(g);
      
-        checkObjectCollision();
-        for (int i = 0; i < entries.size() - 1; i++) {
-            entries.get(i).paintComponent(g);
-        }
+        checkObjectCollision(g);
 
        
 
         for (int i = 0; i < entries.size(); i++) {
-            entries.get(i).paintComponent(g);
+            entries.get(i).paintComponent(30, 60, g);
         }
 
         for (int i = 0; i < entries.size(); i++) {
@@ -111,10 +108,18 @@ public class Floor extends JPanel implements ActionListener, KeyListener{
         Divider divider1 = new Divider(150, 10, 350, 25, "Divider 1");
         Divider divider2 = new Divider(150, 10, 350, 170, "Divider 2");
         Divider divider3 = new Divider(150, 10, 350, 315, "Divider 3");
-        //Trashcan trashcan1 = new Trashcan(30, 125, 0, 175, "Trashcan");
+        Trashcan trashcan1 = new Trashcan(30, 125, 0, 175, "Trashcan");
         
-       // trashcans.add(trashcan1);
+        trashcans.add(trashcan1);
         
+        obstacles.add(divider1);
+        obstacles.add(divider2);
+        obstacles.add(divider3);
+        
+        obstacles.add(table1);
+        obstacles.add(table2);
+        obstacles.add(table3);
+        obstacles.add(trashcan1);
         dividers.add(divider1);
         dividers.add(divider2);
         dividers.add(divider3);
@@ -124,23 +129,80 @@ public class Floor extends JPanel implements ActionListener, KeyListener{
         tables.add(table3);
         
     }
+
     
-    private void checkObjectCollision(){
-        for (int i = 0; i < dividers.size(); i++){
-            if (player1.intersects(dividers.get(i))){
-               player1.setX((dividers.get(i).getCurrentX()-30));
-               player1.setY(dividers.get(i).getCurrentY());
-            }
-        }
+        private void checkObjectCollision(Graphics g){
         
-        for(int i = 0; i<tables.size(); i++){
-            if (player1.intersects(tables.get(i))){
-                player1.setX(tables.get(i).getCurrentX()-30);
-                player1.setY(tables.get(i).getCurrentY()+10);
-               
+        
+        for(int i = 0; i < obstacles.size(); i++){
+            
+            if (player1.intersects(obstacles.get(i))){
+               Rectangle intersection = (Rectangle) player1.createIntersection(obstacles.get(i)); 
+                    
+                if (player1.getDx() < 0 && player1.x >= obstacles.get(i).x) {
+                    player1.setDy(0);
+                    player1.setDx(0);
+                    player1.setStep(0); 
+                    player1.x += intersection.getWidth();
+                    player1.paintComponent(g);
+                }
+
+                if (player1.getDy() < 0 && player1.y >= obstacles.get(i).y) {
+                    player1.setDy(0);
+                    player1.setDx(0);
+                    player1.setStep(0); 
+                    player1.y += intersection.getHeight()+30;
+                    player1.paintComponent(g);
+                }
+
+                if (player1.getDx() > 0 && player1.x <= obstacles.get(i).x) {
+                    player1.setDy(0);
+                    player1.setDx(0);
+                    player1.setStep(0); 
+                    player1.x -= intersection.getWidth();
+                    player1.paintComponent(g);
+                }
+
+                if (player1.getDy() > 0 && player1.y <= obstacles.get(i).y) {
+                    player1.setDy(0);
+                    player1.setDx(0);
+                    player1.setStep(0); 
+                    player1.y -= intersection.getHeight()+30;
+                    player1.paintComponent(g);
+                }
             }
+            
+                if (player1.getDx() < 0 && player1.x <= 0) {
+                    player1.setDy(0);
+                    player1.setDx(0);
+                    player1.setStep(0); 
+                    player1.x += 10;
+                    player1.paintComponent(g);
+                }
+                if (player1.getDx() > 0 && player1.x >= 500) {
+                    player1.setDy(0);
+                    player1.setDx(0);
+                    player1.setStep(0); 
+                    player1.x -= 10;
+                    player1.paintComponent(g);
+                }
+                if (player1.getDy() > 0 && player1.y >= 500) {
+                    player1.setDy(0);
+                    player1.setDx(0);
+                    player1.setStep(0); 
+                    player1.y -= 10;
+                    player1.paintComponent(g);
+                }
+                if (player1.getDy() < 0 && player1.y <= 0) {
+                    player1.setDy(0);
+                    player1.setDx(0);
+                    player1.setStep(0); 
+                    player1.y += 10;
+                    player1.paintComponent(g);
+                }
         }
     }
+  
 
     public void actionPerformed(ActionEvent e) {
         Object o = e.getSource();

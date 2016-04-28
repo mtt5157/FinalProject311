@@ -76,7 +76,7 @@ public class Room extends JPanel implements ActionListener, KeyListener{
        
        this.roomFloor = theFloor;
        this.roomNumber =  theRoomNumber;
-       this.exit = new RoomEntry(roomNumber, 400, -50, theFloor);
+       this.exit = new RoomEntry(roomNumber, 400, 0, theFloor);
        this.carpet = new  ImageIcon("src/Images/carpet.png").getImage();
        this.setSize(500, 500);
        
@@ -164,7 +164,7 @@ public class Room extends JPanel implements ActionListener, KeyListener{
        checkObjectCollision(g);
        background.paintComponent(g);
        player1.paintComponent(g);
-       exit.paintComponent(g);
+       exit.paintComponent(60,30,g);
        for (int i = 0; i<roomObjects.size(); i++){
             roomObjects.get(i).paintComponent(g);
         }  

@@ -39,9 +39,9 @@ public class RoomEntry extends Rectangle {
            this.setBounds(this.xLocation, this.yLocation, 30, 30);
        }
        
-       public void paintComponent(Graphics g){
+       public void paintComponent(int xx, int yy, Graphics g){
            g.setColor(RED);
-           g.fillRect(x, y, 30, 60);
+           g.fillRect(x, y, xx, yy);
        }
        
        public int getNum(){
