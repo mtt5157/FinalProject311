@@ -20,8 +20,8 @@ public class FloorController {
         //floor1 = new Floor(this);
        
         frame1 = new GameFrame("SimIST");
-       floors = new ArrayList<>();
-       floors.add(new Floor(this));
+        floors = new ArrayList<>();
+        floors.add(new Floor(this));
         frame1.add(floors.get(0));
         floors.get(0).revalidate();
         floors.get(0).repaint();
@@ -29,23 +29,6 @@ public class FloorController {
         floors.get(0).requestFocusInWindow();
     }
 
-    //protected ArrayList<Unit> unitList = new ArrayList<Unit>();
-
-//    public void addUnit(Unit u) {
-//        this.unitList.add(u);
-//    }
-//    
-//    public void removeUnit(Unit u){
-//        this.unitList.remove(u);
-//    } 
-//
-//    public ArrayList<Unit> getUnitList() {
-//        return this.unitList;
-//    }
-//
-//    public void setUnitList(ArrayList<Unit> unitList) {
-//        this.unitList = unitList;
-//    }
     
     public void floorToRoom(JPanel room1){
         frame1.remove(floors.get(0));

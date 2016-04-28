@@ -82,23 +82,13 @@ public class Floor extends JPanel implements ActionListener, KeyListener{
         g.clearRect(0, 0, this.getWidth(), this.getHeight());
         tileFloor.paintComponent(g);
         player1.paintComponent(g);
-        paintObjects(g);
-     
-        checkObjectCollision(g);
-
-       
-
-        for (int i = 0; i < entries.size(); i++) {
-            entries.get(i).paintComponent(30, 60, g);
-        }
-
-        for (int i = 0; i < entries.size(); i++) {
-            if (player1.intersects(entries.get(i))) {
-                getController().floorToRoom(entries.get(i).getRoom());
-                 System.out.println("Collision");
-            }
-        }
         
+       paintObjects(g);     
+       checkObjectCollision(g);
+
+      paintEntries(g);                
+      checkEntryCollision();
+      
     }
     
     private void  populateObjects(){
@@ -274,6 +264,22 @@ public class Floor extends JPanel implements ActionListener, KeyListener{
      */
     public void setController(FloorController controller) {
         this.controller = controller;
+    }
+    
+    public void checkEntryCollision (){
+          for (int i = 0; i < entries.size(); i++) {
+            if (player1.intersects(entries.get(i))) {
+                getController().floorToRoom(entries.get(i).getRoom());
+                 System.out.println("Collision");
+            }
+        }
+        
+    }
+    
+    public void paintEntries(Graphics g){
+        for (int i = 0; i < entries.size(); i++) {
+            entries.get(i).paintComponent(30, 60, g);
+        }
     }
     
     
