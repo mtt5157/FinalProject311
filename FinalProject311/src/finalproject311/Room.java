@@ -14,6 +14,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -89,7 +90,7 @@ public class Room extends JPanel implements ActionListener, KeyListener{
        this.background = new Background("src/Images/carpet.png", Background.TILED, this);
        this.addKeyListener(this);
        this.setFocusable(true);
-       
+       this.player1.setLocation(400, 30);
     }
     
     
@@ -124,8 +125,8 @@ public class Room extends JPanel implements ActionListener, KeyListener{
         rightDesk2 = new RoomObject(285, 235,TableHeight, LongtableWidth, this, "src/Images/classroomDesks.png");
         rightDesk3 = new RoomObject(285, 320,TableHeight, LongtableWidth, this, "src/Images/classroomDesks.png");
         rightDesk4 = new RoomObject(285, 405, TableHeight, LongtableWidth, this, "src/Images/classroomDesks.png");
-        printer = new RoomObject(455, 25, PrinterWidth, PrinterHeight, this, "src/Images/printer.png");
-        trashcan = new RoomObject(455, 60, TrashcanWidth, TrashcanHeight, this, "src/Images/trashcan.png");
+        printer = new RoomObject(455, 90, PrinterWidth, PrinterHeight, this, "src/Images/printer.png");
+        trashcan = new RoomObject(455, 55, TrashcanWidth, TrashcanHeight, this, "src/Images/trashcan.png");
         wallUD1 = new RoomObject(-15,0, WallUDWidth, WallUDHeight, this, "src/Images/classroomDesks.png");
         wallUD2 = new RoomObject(485,0, WallUDWidth, WallUDHeight, this, "src/Images/classroomDesks.png");
         wallLR1 = new RoomObject(0, -15, WallLRWidth, WallLRHeight, this, "src/Images/classroomDesks.png");
@@ -210,6 +211,15 @@ public class Room extends JPanel implements ActionListener, KeyListener{
                     player1.setStep(0); 
                     player1.y -= intersection.getHeight();
                     player1.paintComponent(g);
+                }
+                if(roomObjects.get(i).equals(printer)){
+                    JOptionPane.showMessageDialog(null, "Beep Beep I'm a copier", "" + "Copier", JOptionPane.INFORMATION_MESSAGE);
+                }
+                if(roomObjects.get(i).equals(trashcan)){
+                    JOptionPane.showMessageDialog(null, "The garbage is full", "Error " + "", JOptionPane.INFORMATION_MESSAGE);
+                }
+                if(roomObjects.get(i).equals(frontTable)){
+                    JOptionPane.showMessageDialog(null, "Out at lunch, go find to Prof. Oak in Pallet Town  \n -Prof Rimland", "Note " + "", JOptionPane.INFORMATION_MESSAGE);
                 }
             }
             
