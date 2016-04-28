@@ -25,8 +25,8 @@ import javax.swing.Timer;
 public class Room extends JPanel implements ActionListener, KeyListener{
     
     
-    public static final int PodeumWidth = 85;
-    public static final int PodeumHeight = 65;
+    public static final int PodeumWidth = 75;
+    public static final int PodeumHeight = 55;
     public static final int LongtableWidth = 200;
     public static final int MiddletableWidth = 90;
     public static final int ShorttableWidth = 18;
@@ -45,6 +45,7 @@ public class Room extends JPanel implements ActionListener, KeyListener{
     
     
     private RoomObject podium;
+    private RoomObject prfessor;
     private RoomObject frontTable;
     private RoomObject leftDesk1;
     private RoomObject leftDesk2;
@@ -96,6 +97,7 @@ public class Room extends JPanel implements ActionListener, KeyListener{
     
 
     private void addObjectsToArayList(){
+        this.roomObjects.add(prfessor);
         this.roomObjects.add(podium);
         this.roomObjects.add(frontTable);
         this.roomObjects.add(leftDesk1);
@@ -115,7 +117,8 @@ public class Room extends JPanel implements ActionListener, KeyListener{
     }
 
     private void init() {
-        podium = new RoomObject(100, 20, PodeumWidth, PodeumHeight, this, "src/Images/podium.png");
+        prfessor = new RoomObject(110, 5, 35, 35, this, "src/Images/professor.png");
+        podium = new RoomObject(100, 10, PodeumWidth, PodeumHeight, this, "src/Images/podium.png");
         frontTable = new RoomObject(0, 0,FrontTableWidth, FrontTableHeight, this, "src/Images/shortDesk.png");
         leftDesk1 = new RoomObject(0, 150, TableHeight, LongtableWidth,this, "src/Images/classroomDesks.png");
         leftDesk2 = new RoomObject(0, 235,TableHeight, LongtableWidth, this, "src/Images/classroomDesks.png");
@@ -186,6 +189,7 @@ public class Room extends JPanel implements ActionListener, KeyListener{
                     player1.setDx(0);
                     player1.setStep(0); 
                     player1.x += intersection.getWidth();
+                    checkForObjectMessage(roomObjects.get(i));
                     player1.paintComponent(g);
                 }
 
@@ -194,6 +198,7 @@ public class Room extends JPanel implements ActionListener, KeyListener{
                     player1.setDx(0);
                     player1.setStep(0); 
                     player1.y += intersection.getHeight();
+                    checkForObjectMessage(roomObjects.get(i));
                     player1.paintComponent(g);
                 }
 
@@ -202,6 +207,7 @@ public class Room extends JPanel implements ActionListener, KeyListener{
                     player1.setDx(0);
                     player1.setStep(0); 
                     player1.x -= intersection.getWidth();
+                    checkForObjectMessage(roomObjects.get(i));
                     player1.paintComponent(g);
                 }
 
@@ -210,16 +216,8 @@ public class Room extends JPanel implements ActionListener, KeyListener{
                     player1.setDx(0);
                     player1.setStep(0); 
                     player1.y -= intersection.getHeight();
+                    checkForObjectMessage(roomObjects.get(i));
                     player1.paintComponent(g);
-                }
-                if(roomObjects.get(i).equals(printer)){
-                    JOptionPane.showMessageDialog(null, "Beep Beep I'm a copier", "" + "Copier", JOptionPane.INFORMATION_MESSAGE);
-                }
-                if(roomObjects.get(i).equals(trashcan)){
-                    JOptionPane.showMessageDialog(null, "The garbage is full", "Error " + "", JOptionPane.INFORMATION_MESSAGE);
-                }
-                if(roomObjects.get(i).equals(frontTable)){
-                    JOptionPane.showMessageDialog(null, "Out at lunch, go find to Prof. Oak in Pallet Town  \n -Prof Rimland", "Note " + "", JOptionPane.INFORMATION_MESSAGE);
                 }
             }
             
@@ -252,6 +250,33 @@ public class Room extends JPanel implements ActionListener, KeyListener{
                     player1.paintComponent(g);
                 }
         }
+    }
+    
+    public void checkForObjectMessage(RoomObject obj){
+        if(obj.equals(printer)){
+                    JOptionPane.showMessageDialog(null, "Beep Beep I'm a copier", "" + "Copier", JOptionPane.INFORMATION_MESSAGE);
+                }
+                if(obj.equals(trashcan)){
+                    JOptionPane.showMessageDialog(null, "It's Empty", "Trash Can " + "", JOptionPane.INFORMATION_MESSAGE);
+                }
+                if(obj.equals(prfessor) || obj.equals(podium)){
+                    JOptionPane.showMessageDialog(null, "Penn State's network crashed,\n go find Prof. Oak in IT", "Professor " + "", JOptionPane.INFORMATION_MESSAGE);
+                }
+                if  (
+                        obj.equals(leftDesk1)
+                        || obj.equals(leftDesk1) 
+                        || obj.equals(leftDesk1) 
+                        || obj.equals(leftDesk2) 
+                        || obj.equals(leftDesk3) 
+                        || obj.equals(leftDesk4) 
+                        || obj.equals(rightDesk1) 
+                        || obj.equals(rightDesk2)
+                        || obj.equals(rightDesk3) 
+                        || obj.equals(rightDesk4) 
+                    )
+                {
+                    JOptionPane.showMessageDialog(null, "Access Denied: Login credentials invalid", "Console: " + "Error", JOptionPane.INFORMATION_MESSAGE);
+                }
     }
      
     @Override
