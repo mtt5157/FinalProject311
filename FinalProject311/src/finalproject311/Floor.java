@@ -226,7 +226,7 @@ public class Floor extends JPanel implements ActionListener, KeyListener{
            if (e.getKeyCode() == KeyEvent.VK_LEFT) {
             player1.setDx(-10);
           
-            System.out.println("Typed");
+            
             }
            
             else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
@@ -270,7 +270,7 @@ public class Floor extends JPanel implements ActionListener, KeyListener{
           for (int i = 0; i < entries.size(); i++) {
             if (player1.intersects(entries.get(i))) {
                 getController().floorToRoom(entries.get(i).getRoom());
-                 System.out.println("Collision");
+                
             }
         }
         

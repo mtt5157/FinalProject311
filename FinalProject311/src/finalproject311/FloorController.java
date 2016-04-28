@@ -54,8 +54,22 @@ public class FloorController {
         
         this.floors.get(0).revalidate();
         this.floors.get(0).repaint();
-        //frame1.revalidate();
-        //frame1.repaint();
+        
+    }
+    
+    public void room204ToFloor(Room204 room1,Floor floor)
+    {
+        frame1.remove(room1);
+        floors.remove(0);
+        floors.add(new Floor(this));
+        
+        frame1.add(floors.get(0));
+        this.floors.get(0).setFocusable(true);
+        this.floors.get(0).requestFocusInWindow();
+        
+        this.floors.get(0).revalidate();
+        this.floors.get(0).repaint();
+       
     }
             
 

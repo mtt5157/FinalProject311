@@ -63,7 +63,7 @@ public class Room204 extends JPanel implements ActionListener, KeyListener {
        this.carpet = new  ImageIcon("src/Images/carpet.png").getImage();
        this.setSize(500, 500);
        this.roomNumber =  n;
-       this.exit = new RoomEntry(roomNumber, 400, -50, theFloor);
+       this.exit = new RoomEntry(roomNumber, 300, 0, theFloor);
        this.roomObjects = new ArrayList<>();
        this.timer1 = new Timer(50, this);
        this.timer1.start();
@@ -129,16 +129,17 @@ public class Room204 extends JPanel implements ActionListener, KeyListener {
        checkObjectCollision(g);
        background.paintComponent(g);
        player1.paintComponent(g);
+       exit.paintComponent(60,30,g);
        for (int i = 0; i<roomObjects.size(); i++){
             roomObjects.get(i).paintComponent(g);
         }  
     }
     
     private void checkObjectCollision(Graphics g){
-        /*if (player1.intersects(exit)){
-            this.roomFloor.getController().roomToFloor(this,roomFloor);
+        if (player1.intersects(exit)){
+            this.roomFloor.getController().room204ToFloor(this,roomFloor);
         }
-        */
+        
         for(int i = 0; i < roomObjects.size(); i++){
             
             if (player1.intersects(roomObjects.get(i))){
